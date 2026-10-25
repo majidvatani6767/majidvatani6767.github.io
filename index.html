@@ -1,81 +1,464 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>سایت من</title>
+<title>انتخاب برتر | معرفی بهترین محصولات</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Tahoma, Arial, sans-serif;
-            background: #f3f5f9;
-            color: #222;
-            text-align: center;
-        }
+<style>
+* {
+    box-sizing: border-box;
+}
 
-        header {
-            background: #1565c0;
-            color: white;
-            padding: 35px 15px;
-        }
+body {
+    margin: 0;
+    font-family: Tahoma, Arial, sans-serif;
+    background: #f6f7fb;
+    color: #202438;
+    line-height: 1.9;
+}
 
-        header h1 {
-            margin: 0 0 12px;
-            font-size: 30px;
-        }
+header {
+    background: #171b35;
+    color: white;
+    padding: 18px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
 
-        main {
-            max-width: 700px;
-            margin: 35px auto;
-            padding: 25px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px #0001;
-        }
+.logo {
+    font-size: 23px;
+    font-weight: bold;
+    color: #ffd166;
+}
 
-        .button {
-            display: inline-block;
-            background: #1565c0;
-            color: white;
-            text-decoration: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            margin-top: 15px;
-        }
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 8px;
+    font-size: 14px;
+}
 
-        footer {
-            padding: 20px;
-            color: #666;
-        }
-    </style>
+.hero {
+    padding: 65px 20px;
+    text-align: center;
+    color: white;
+    background: linear-gradient(135deg, #22264c, #6546d7);
+}
+
+.hero h1 {
+    font-size: clamp(27px, 5vw, 42px);
+    line-height: 1.7;
+    margin: 0 0 10px;
+}
+
+.hero p {
+    color: #e3e3ff;
+    max-width: 600px;
+    margin: 0 auto 25px;
+}
+
+.search {
+    width: 100%;
+    max-width: 480px;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    outline: none;
+}
+
+.container {
+    width: 92%;
+    max-width: 1100px;
+    margin: 35px auto;
+}
+
+.section-title {
+    font-size: 24px;
+    margin-bottom: 18px;
+}
+
+.categories {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.category {
+    border: 1px solid #dedff0;
+    border-radius: 25px;
+    background: white;
+    padding: 9px 17px;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.category.active,
+.category:hover {
+    background: #6546d7;
+    color: white;
+    border-color: #6546d7;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 17px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px #25264b0c;
+    border: 1px solid #ededf5;
+    transition: transform .2s, box-shadow .2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px #25264b16;
+}
+
+.product-image {
+    min-height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 65px;
+    background: #f0edff;
+}
+
+.card-content {
+    padding: 18px;
+}
+
+.card h3 {
+    font-size: 17px;
+    margin: 0 0 8px;
+}
+
+.card p {
+    color: #696d80;
+    font-size: 13px;
+    margin: 0 0 15px;
+}
+
+.badge {
+    display: inline-block;
+    font-size: 11px;
+    background: #e8f8ef;
+    color: #18834a;
+    padding: 3px 10px;
+    border-radius: 15px;
+    margin-bottom: 8px;
+}
+
+.button {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 9px;
+    background: #6546d7;
+    color: white;
+    font-size: 14px;
+}
+
+.button:hover {
+    background: #4f32bc;
+}
+
+.notice {
+    background: white;
+    border-radius: 15px;
+    padding: 22px;
+    margin-top: 35px;
+    color: #64687b;
+    font-size: 13px;
+}
+
+footer {
+    margin-top: 50px;
+    padding: 28px 15px;
+    background: #171b35;
+    color: white;
+    text-align: center;
+    font-size: 13px;
+}
+
+footer a {
+    color: #ffd166;
+}
+
+@media (max-width: 700px) {
+    .products {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    header {
+        justify-content: center;
+        text-align: center;
+    }
+
+    nav {
+        width: 100%;
+    }
+
+    .hero {
+        padding: 45px 15px;
+    }
+
+    .card-content {
+        padding: 12px;
+    }
+
+    .product-image {
+        min-height: 115px;
+        font-size: 48px;
+    }
+
+    .card h3 {
+        font-size: 14px;
+    }
+
+    .card p {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 360px) {
+    .products {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <header>
-        <h1>به سایت من خوش آمدید</h1>
-        <p>اولین سایت من با GitHub Pages</p>
-    </header>
+<header>
+    <div class="logo">⭐ انتخاب برتر</div>
 
-    <main>
-        <h2>درباره سایت من</h2>
+    <nav>
+        <a href="#home">خانه</a>
+        <a href="#products">محصولات</a>
+        <a href="#about">درباره ما</a>
+    </nav>
+</header>
 
+<section class="hero" id="home">
+    <h1>خرید بهتر با انتخاب هوشمندانه</h1>
+
+    <p>
+        محصولات کاربردی را بشناس، ویژگی‌هایشان را مقایسه کن
+        و با آگاهی بیشتر تصمیم بگیر.
+    </p>
+
+    <input
+        class="search"
+        type="search"
+        id="search"
+        placeholder="🔎 دنبال چه محصولی می‌گردی؟"
+        aria-label="جست‌وجوی محصولات"
+    >
+</section>
+
+<main class="container" id="products">
+
+    <h2 class="section-title">🛍️ محصولات پیشنهادی</h2>
+
+    <div class="categories">
+        <button class="category active" data-category="all">
+            همه محصولات
+        </button>
+
+        <button class="category" data-category="mobile">
+            📱 لوازم موبایل
+        </button>
+
+        <button class="category" data-category="home">
+            🏠 خانه و آشپزخانه
+        </button>
+
+        <button class="category" data-category="digital">
+            🎧 محصولات دیجیتال
+        </button>
+    </div>
+
+    <div class="products" id="product-list">
+
+        <article class="card"
+            data-category="mobile"
+            data-name="شارژر موبایل">
+            <div class="product-image">🔌</div>
+            <div class="card-content">
+                <span class="badge">لوازم موبایل</span>
+                <h3>راهنمای انتخاب شارژر</h3>
+                <p>
+                    توان شارژ، سازگاری با گوشی و نکات مهم
+                    قبل از خرید را بررسی کن.
+                </p>
+                <a class="button" href="#about">به‌زودی</a>
+            </div>
+        </article>
+
+        <article class="card"
+            data-category="digital"
+            data-name="هدفون بی سیم">
+            <div class="product-image">🎧</div>
+            <div class="card-content">
+                <span class="badge">محصولات دیجیتال</span>
+                <h3>راهنمای خرید هدفون</h3>
+                <p>
+                    کیفیت صدا، عمر باتری و راحتی استفاده
+                    از معیارهای مهم انتخاب هستند.
+                </p>
+                <a class="button" href="#about">به‌زودی</a>
+            </div>
+        </article>
+
+        <article class="card"
+            data-category="home"
+            data-name="لوازم آشپزخانه">
+            <div class="product-image">🍳</div>
+            <div class="card-content">
+                <span class="badge">خانه و آشپزخانه</span>
+                <h3>وسایل کاربردی آشپزخانه</h3>
+                <p>
+                    با چند معیار ساده، وسایل کاربردی
+                    را بهتر انتخاب کن.
+                </p>
+                <a class="button" href="#about">به‌زودی</a>
+            </div>
+        </article>
+
+        <article class="card"
+            data-category="mobile"
+            data-name="پایه نگهدارنده گوشی">
+            <div class="product-image">📱</div>
+            <div class="card-content">
+                <span class="badge">لوازم موبایل</span>
+                <h3>پایه نگهدارنده گوشی</h3>
+                <p>
+                    نکاتی برای انتخاب پایه مناسب
+                    میز کار و استفاده روزمره.
+                </p>
+                <a class="button" href="#about">به‌زودی</a>
+            </div>
+        </article>
+
+        <article class="card"
+            data-category="digital"
+            data-name="ساعت هوشمند">
+            <div class="product-image">⌚</div>
+            <div class="card-content">
+                <span class="badge">محصولات دیجیتال</span>
+                <h3>راهنمای خرید ساعت هوشمند</h3>
+                <p>
+                    امکانات، سازگاری با گوشی
+                    و عمر باتری را مقایسه کن.
+                </p>
+                <a class="button" href="#about">به‌زودی</a>
+            </div>
+        </article>
+
+        <article class="card"
+            data-category="home"
+            data-name="چراغ مطالعه">
+            <div class="product-image">💡</div>
+            <div class="card-content">
+                <span class="badge">خانه و آشپزخانه</span>
+                <h3>انتخاب چراغ مطالعه</h3>
+                <p>
+                    روشنایی مناسب و قابلیت تنظیم
+                    از نکات مهم هنگام انتخاب هستند.
+                </p>
+                <a class="button" href="#about">به‌زودی</a>
+            </div>
+        </article>
+
+    </div>
+
+    <p id="empty" hidden>
+        محصولی با این مشخصات پیدا نشد.
+    </p>
+
+    <section class="notice" id="about">
+        <h3>درباره انتخاب برتر</h3>
         <p>
-            این اولین سایت من است.
-            به‌زودی مطالب و امکانات جدیدی به آن اضافه می‌کنم.
+            هدف ما ارائه اطلاعات کاربردی برای انتخاب بهتر محصولات است.
+            محصولات و لینک‌های خرید به‌تدریج اضافه خواهند شد.
         </p>
+        <p>
+            در صورت استفاده از لینک‌های همکاری در فروش،
+            این موضوع به‌صورت شفاف به بازدیدکنندگان اعلام خواهد شد.
+        </p>
+    </section>
 
-        <a class="button"
-           href="https://github.com/">
-            ورود به گیت‌هاب
-        </a>
-    </main>
+</main>
 
-    <footer>
-        ساخته شده با علاقه ❤️
-    </footer>
+<footer>
+    <p>انتخاب برتر | راهنمای انتخاب آگاهانه</p>
+    <p>© تمامی حقوق محفوظ است.</p>
+</footer>
+
+<script>
+const search = document.getElementById("search");
+const cards = [...document.querySelectorAll(".card")];
+const buttons = [...document.querySelectorAll(".category")];
+const empty = document.getElementById("empty");
+
+let selectedCategory = "all";
+
+function filterProducts() {
+    const query = search.value.trim().toLowerCase();
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+        const name = card.dataset.name.toLowerCase();
+        const category = card.dataset.category;
+        const text = card.innerText.toLowerCase();
+
+        const matchesSearch =
+            name.includes(query) || text.includes(query);
+
+        const matchesCategory =
+            selectedCategory === "all" ||
+            category === selectedCategory;
+
+        const visible = matchesSearch && matchesCategory;
+
+        card.hidden = !visible;
+
+        if (visible) visibleCount++;
+    });
+
+    empty.hidden = visibleCount > 0;
+}
+
+search.addEventListener("input", filterProducts);
+
+buttons.forEach(button => {
+    button.addEventListener("click", () => {
+        selectedCategory = button.dataset.category;
+
+        buttons.forEach(item => {
+            item.classList.remove("active");
+        });
+
+        button.classList.add("active");
+        filterProducts();
+    });
+});
+</script>
 
 </body>
 </html>
